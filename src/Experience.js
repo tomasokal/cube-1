@@ -18,13 +18,34 @@ export default function Experience()
 
         const t = state.clock.getElapsedTime() 
 
-        cubeOne.current.position.y = Math.sin(t) / 2 + 0.5
-        cubeTwo.current.position.y = Math.sin(t + Math.PI / 2) / 2 + 0.5
-        cubeThree.current.position.y = Math.sin(t + Math.PI) / 2 + 0.5
-        cubeFour.current.position.y = Math.sin(t + 3 * Math.PI / 2) / 2 + 0.5
+        const clamp = (num, min, max) => Math.min(Math.max(num, min), max)
 
-        ball.current.position.x = Math.sin(t) / 2 + 0.5
-        ball.current.position.z = Math.cos(t) / 2 + 0.5
+        // console.log(Math.cos(2 * Math.PI / 3))
+
+        ball.current.position.y = Math.abs( Math.cos(2 * t) ) + 1
+
+        // ball.current.position.x = Math.cos(t) / 2 + 0.5
+        // ball.current.position.z = Math.cos(t) / 2 + 0.5
+
+        // cubeOne.current.scale.y = Math.cos(t / 2) * 2
+        // cubeTwo.current.scale.y = Math.sin(t * 2 + Math.PI / 2) / 2 + 1.5
+        // cubeThree.current.scale.y = Math.sin(t * 2 + Math.PI) / 2 + 1.5
+        // cubeFour.current.scale.y = Math.sin(t * 2 + 3 * Math.PI / 2) / 2 + 1.5
+
+        ball.current.position.x = clamp( Math.sin(t), -2 / 3, 2 / 3 )
+        ball.current.position.z = clamp( Math.sin(t + Math.PI / 2), -2 / 3, 2 / 3 )
+        // ball.current.position.x = Math.sin(t)
+        // console.log(ball.current.position.x)
+        // ball.current.position.x = Math.cos(t) + 0.5
+        // ball.current.position.z = Math.cos(t) / 2 + 0.5
+        // console.log(Math.cos(t) + 0.5)
+        // console.log(Math.cos( Math.PI / 3 ))
+        // console.log(Math.cos( 2 * Math.PI / 3 ))
+        // ball.current.position.z = clamp(Math.sin(t) + 0.5, 0, 1)
+
+        // ball.current.position.y = ( Math.cos(t * 2) ) + 2
+        // ball.current.position.z = Math.sin(t) / 2 + 0.5
+        // ball.current.position.y = Math.sin(t * 4) / 2 + 2
 
     })
 
@@ -43,7 +64,7 @@ export default function Experience()
                 />
             </mesh> */}
 
-            <mesh position={ [0, 0, 0] } ref={ cubeOne } >
+            <mesh position={ [-0.5, 0, -0.5] } ref={ cubeOne } >
                 <boxGeometry args={ [ 1, 1, 1 ] } />
                 <meshPhysicalMaterial 
                     metalness={ 0 }
@@ -53,7 +74,7 @@ export default function Experience()
                 />
             </mesh>
 
-            <mesh position={ [1, 0, 0] } ref={ cubeTwo } >
+            <mesh position={ [0.5, 0, -0.5] } ref={ cubeTwo } >
                 <boxGeometry args={ [ 1, 1, 1 ] } />
                 <meshPhysicalMaterial 
                     metalness={ 0 }
@@ -63,7 +84,7 @@ export default function Experience()
                 />
             </mesh>
 
-            <mesh position={ [ 1, 0, 1] } ref={ cubeThree } >
+            <mesh position={ [ 0.5, 0, 0.5] } ref={ cubeThree } >
                 <boxGeometry args={ [ 1, 1, 1 ] } />
                 <meshPhysicalMaterial 
                     metalness={ 0 }
@@ -73,7 +94,7 @@ export default function Experience()
                 />
             </mesh>
 
-            <mesh position={ [0, 0, 1] } ref={ cubeFour } >
+            <mesh position={ [-0.5, 0, 0.5] } ref={ cubeFour } >
                 <boxGeometry args={ [ 1, 1, 1 ] } />
                 <meshPhysicalMaterial 
                     metalness={ 0 }
